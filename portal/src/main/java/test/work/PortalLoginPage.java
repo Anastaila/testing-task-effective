@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class PortalLoginPage {
     private WebDriver driver;
 
@@ -42,9 +43,9 @@ public class PortalLoginPage {
         return this;
     }
 
-    public PortalLoginPage submitData() {
+    public LaunchPage submitData() {
         submitButtom.submit();
-        return new PortalLoginPage(driver);
+        return new LaunchPage(driver);
     }
 
     public String getError() {
