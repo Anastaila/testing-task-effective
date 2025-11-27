@@ -1,8 +1,4 @@
-import java.time.Duration;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -21,24 +17,30 @@ public class DashboardTest {
         Configurator.setupChrome();
         page = new PortalLoginPage(Configurator.getChromeDriver());
         page.getPage();
-        String login = "default";
-        String password = "1q2w3e";
-        page.inputLogin(login);
-        page.inputPassword(password);
+        // String login = "default";
+        // String password = "1q2w3e";
+        // page.inputLogin(login);
+        // page.inputPassword(password);
         LaunchPage launch = page.submitData();
         DashboardPage dashPage = launch.goToDashboard();
-        projectPage = dashPage.clickProject();
+        projectPage = dashPage.addBoard("Test");
+        // projectPage = dashPage.clickProject("DEMO DASHBOARD");
     }
 
     @Test
-    public void correctTest() {
+    public void createWidgetTest() {
         projectPage.addWidget();
         projectPage.chooseStatic();
-        projectPage.nextStep();
-        projectPage.chooseFirstProject();
-        projectPage.nextStep();
-        String name = "Hello";
+        projectPage.nextStep1();
+        projectPage.chooseFilter();
+        projectPage.nextStep2();
+        String name = "Helloo";
         projectPage.enterName(name);
         projectPage.saveWidget();
-    }   
+    }
+    
+    @AfterTest
+    public void DeleleteDashboard() {
+        projectPage.deleteDashboard();
+    }
 }
