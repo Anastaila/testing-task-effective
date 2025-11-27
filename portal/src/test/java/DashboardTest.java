@@ -1,7 +1,10 @@
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Story;
 import test.work.Configurator;
 import test.work.DashboardPage;
 import test.work.DashboardPrivatePage;
@@ -28,6 +31,8 @@ public class DashboardTest {
     }
 
     @Test
+    @Story("As user I want create widget to see graphics")
+    @Description("Test for creating widget")
     public void createWidgetTest() {
         projectPage.addWidget();
         projectPage.chooseStatic();
@@ -36,7 +41,7 @@ public class DashboardTest {
         projectPage.nextStep2();
         String name = "Helloo";
         projectPage.enterName(name);
-        projectPage.saveWidget();
+        Assert.assertTrue(projectPage.saveWidget());
     }
     
     @AfterTest

@@ -3,6 +3,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Story;
 import test.work.Configurator;
 import test.work.PortalLoginPage;
 
@@ -19,7 +21,9 @@ public class NegativeLoginTest {
     }
 
     @Test
-    public void incorrectTest() {
+    @Story("As user i want log in page to use all actions in site")
+    @Description("Testing login page with positive data")
+    public void incorrectLoginoginTest() {
         String login = "invalidUser";
         String password = "wrongPAssword";
         page.inputLogin(login);

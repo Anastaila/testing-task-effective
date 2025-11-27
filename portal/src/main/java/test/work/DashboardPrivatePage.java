@@ -13,11 +13,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DashboardPrivatePage {
-    private WebDriver driver;
+    private final WebDriver driver;
    
    public DashboardPrivatePage(final WebDriver driver) {
     this.driver = driver;
-    PageFactory.initElements(driver,this);
+    PageFactory.initElements(driver, this);
    }
    
    @FindBy(xpath =  "//button[.//span[text()='Add new widget']]")
@@ -54,9 +54,11 @@ public class DashboardPrivatePage {
     widgetName.sendKeys(name);
    }
 
-   public void saveWidget() {
+   public boolean saveWidget() {
     WebElement buttonSave = driver.findElement(By.xpath("//button[text()='Add']"));
     buttonSave.click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    return wait.until(ExpectedConditions.invisibilityOf(buttonSave));
    }
 
    public void deleteDashboard() {
@@ -64,6 +66,5 @@ public class DashboardPrivatePage {
     buttonDel.click();
     WebElement buttonFinalDel = driver.findElement(By.xpath("//button[text()='Delete']"));
     buttonFinalDel.click();
-    // new Actions(driver).moveToElement(buttonFinalDel).click().perform();
    }
 }
