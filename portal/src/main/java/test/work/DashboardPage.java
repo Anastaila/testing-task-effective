@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Step;
+
 public class DashboardPage {
    private final WebDriver driver;
    
@@ -20,6 +22,7 @@ public class DashboardPage {
 
    private final By buttonAddBoard = By.xpath("//button[.//span[text()='Add New Dashboard']]");
 
+   @Step("Adding dashboard")
    public DashboardPrivatePage addBoard(final String name) {
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
       WebElement buttonAdd = wait.until(ExpectedConditions.elementToBeClickable(buttonAddBoard));
@@ -32,6 +35,7 @@ public class DashboardPage {
       return new DashboardPrivatePage(driver);
    }
 
+   @Step("Click on existing project")
    public DashboardPrivatePage clickProject(final String name) {
       WebElement project = driver.findElement(By.xpath("//a[text()='"+ name + "']"));
       ((JavascriptExecutor) driver).executeScript("arguments[0].click();", project);

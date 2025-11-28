@@ -1,5 +1,7 @@
 package test.work;
 
+import io.qameta.allure.Step;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +16,7 @@ public class PortalLoginPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Go to the page login")
     public void getPage() {
         driver.get("https://demo.reportportal.io/ui/#login");
     }
@@ -30,24 +33,27 @@ public class PortalLoginPage {
     @FindBy(xpath="//span[text()='Bad Credentials']")
     private WebElement errorFlag;
 
-
+    @Step("Input login {login}")
     public PortalLoginPage inputLogin(final String login) {
         fieldLogin.clear();
         fieldLogin.sendKeys(login);
         return this;
     }
 
+    @Step("Input {password}")
     public PortalLoginPage inputPassword(final String password) {
         fieldPassword.clear();
         fieldPassword.sendKeys(password);
         return this;
     }
 
+    @Step("Click on submit button")
     public LaunchPage submitData() {
         submitButtom.submit();
         return new LaunchPage(driver);
     }
-
+    
+    @Step("Getting error with Bad Credentials")
     public String getError() {
         return errorFlag.getText();
     }

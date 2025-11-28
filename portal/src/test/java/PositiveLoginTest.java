@@ -3,6 +3,7 @@ import java.time.Duration;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -32,5 +33,10 @@ public class PositiveLoginTest {
         page.submitData();
         WebDriverWait wait = new WebDriverWait(Configurator.getChromeDriver(), Duration.ofSeconds(10));
         Assert.assertTrue(wait.until(ExpectedConditions.urlContains("https://demo.reportportal.io/ui/#default_personal/launches/all")));
+    }
+
+    @AfterTest
+    public void closeProccess() {
+        Configurator.quit();
     }
 }

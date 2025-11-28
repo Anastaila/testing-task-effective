@@ -41,11 +41,13 @@ public class DashboardTest {
         projectPage.nextStep2();
         String name = "Helloo";
         projectPage.enterName(name);
-        Assert.assertTrue(projectPage.saveWidget());
+        projectPage.saveWidget();
+        Assert.assertTrue(projectPage.chooseWidget(name));
     }
     
     @AfterTest
     public void DeleleteDashboard() {
         projectPage.deleteDashboard();
+        Configurator.quit();
     }
 }

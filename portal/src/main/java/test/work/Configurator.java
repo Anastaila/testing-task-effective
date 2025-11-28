@@ -27,6 +27,12 @@ public class Configurator {
         return driver;
     }
     
+    public static void quit() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
     public static void setTimeoutTime(final int time, final TimeUnit timeUnit) {
         getChromeDriver().manage().timeouts().implicitlyWait(time, timeUnit);
     }
